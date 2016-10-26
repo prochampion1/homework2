@@ -1,9 +1,8 @@
 class Message < ApplicationRecord
   belongs_to :user
   belongs_to :conversation
-
   validates_presence_of :body, :conversation_id, :user_id
-  scope :unread, -> { where(read_at: nil?) }
+  scope :unread, -> { where(read_at: nil) }
 
   
   def message_time
@@ -14,7 +13,7 @@ class Message < ApplicationRecord
      
   end
 
-  def read?
-    self.read_was.nil? ? false : true
-  end
+   def read?
+        self.read_at.nil? ? true : false
+    end
 end  

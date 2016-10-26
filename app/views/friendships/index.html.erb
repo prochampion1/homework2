@@ -15,11 +15,10 @@
           <td><%= friendship.friend.email %></td>
           <td><%= time_ago_in_words friendship.friend.created_at %></td>
           <td>
-          <%= link_to "remove", friendship, :method => :delete, class: "btn btn-danger" %>
+          <%= link_to "remove", friendship_path(friendship.id), :method => :delete, class: "btn btn-danger" %>
           </td>
         </tr>
     <% end %>
   </tbody>
 </table>
 <ul>
-<p><%= link_to "Find Friends", users_path, class: 'btn btn-default' %></p>

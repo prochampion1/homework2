@@ -1,38 +1,12 @@
+
 <div class="ui segment">
- <h3>Mailbox</h3>
- <div class="ui list">
-  <div class="item">
-    <% @conversations.each do |conversation| %>
-      <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
-      <% if conversation.sender_id == current_user.id %>
-        <% recipient = User.find(conversation.recipient_id) %>
-      <% else %>
-        <% recipient = User.find(conversation.sender_id) %>
-      <% end %>
-    
-      <table class="table">
-        <thead class="thead thead-default">
-          <tr>
-            <th>Name</th>
-            <th>Content</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= link_to recipient.name, conversation_messages_path(conversation)%></td>
-            <% if conversation.messages.last.read? %>
-              <td><i><b><%= conversation.messages.last.body %></b></i></td>
-            <% else %>
-              <td><%= conversation.messages.last.body %></td>
-            <% end %> 
-          </tr>
-        </tbody>
-    </table>
-   <% end %>
-  <% end %>
-  </div>
- </div>
-</div>
+               <ul>
+                   <li><%= link_to "unread message",unread_path  %></li>
+  
+                   <li><%= link_to " read message", all_path %> </li>
+              </ul>
+
+ </div> 
 
 <div class="ui segment">
  <h3>All Users</h3>

@@ -6,15 +6,13 @@ has_many :friends, :through => :friendships
 has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
 has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 validates :name, presence: true
-has_many :conversation
 validates :email, presence: true, uniqueness: {case_insensitive: false}
 validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 has_secure_password
 
 
-
-def received_messages
-      where(recipient: self)
+    def incoming_messages
+      Message.where(recipient_id: id).order('created_at DESC')
     end
 
     def last_online
@@ -26,5 +24,6 @@ def received_messages
   end
 
   def sent_messages
+    Message.where(sender_id: id).oreder('created_at DESC')
     end
 end

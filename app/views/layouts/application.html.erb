@@ -18,8 +18,8 @@
           <%= link_to "mailbox", conversations_path %>
        </div>
   <% else %>
- 
-          <%= link_to " Sign up", new_user_path %>
+         
+           <%= link_to 'new Account', new_user_path, class: 'nav-link' %>
           <%= link_to "Log in", new_session_path %>
   <% end %>
 

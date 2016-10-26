@@ -19,7 +19,7 @@
           <td><%= time_ago_in_words user.created_at%></td>
 
           <td>
-            <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post, class: "btn btn-primary" %>
+            <%= link_to "Add Friend", friendships_path(:user_id => user), :method => :post, class: "btn btn-primary" %>
           </td>
         </tr>
     <% end %>

@@ -9,8 +9,11 @@
   def new
     @user = User.new
   end
+  def show 
+    @friendships = Friendship.all
+    @users = User.all
 
-
+  end 
   def create 
     @user=User.create user_params
     if @user.persisted?

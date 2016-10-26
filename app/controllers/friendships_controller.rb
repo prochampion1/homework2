@@ -4,7 +4,7 @@ class FriendshipsController < ApplicationController
   # GET /friendships
   # GET /friendships.json
   def index
-    @friendships = Friendship.all
+   @friendships = Friendship.all
   end
 
   # GET /friendships/1
@@ -25,9 +25,9 @@ class FriendshipsController < ApplicationController
   # POST /friendships.json
   def create
     @friendship = current_user.friendships.build
-    @friendship.friend_id = params[:friend_id]
+    @friendship.friend_id = params[:user_id]
     @friendship.user_id = current_user.id
-    if @friendship.save
+    if @friendship.save!
       flash[:notice] = "Added friend."
       redirect_to friendships_path
     else
@@ -39,7 +39,11 @@ class FriendshipsController < ApplicationController
   # PATCH/PUT /friendships/1
   # PATCH/PUT /friendships/1.json
   def update
-    respond_to do |format|
+
+    # @friendship = Friendship.find(params[:id])
+    # @friendship.accept_friend!
+    # redirect_to friendships_path
+   respond_to do |format|
       if @friendship.update(friendship_params)
         format.html { redirect_to @friendship, notice: 'Friendship was successfully updated.' }
         format.json { render :show, status: :ok, location: @friendship }

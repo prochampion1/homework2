@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
    before_action :authenticate_user
-   after_action :update_read, only: [:index]
+   after_action :update_read, only: [:unread]
    
 
   def index
@@ -37,10 +37,9 @@ class ConversationsController < ApplicationController
   def conversation_params
     params.permit(:sender_id, :recipient_id)
   end
+
   def update_read
     Message.joins(:conversation).where(read: false, read_at: nil).where(conversations: {id: @conversations.pluck(:id)}).update(read: true, read_at: Time.now)
-
   end
 
-  
 end

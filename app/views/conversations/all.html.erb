@@ -18,7 +18,7 @@
                                 </tr>
                               </thead>
                             
-                                <%  conversation.messages.where.(read_at: nil).each do  |message| %>
+                                <%  conversation.messages.where.not(read_at: nil).each do  |message| %>
                                   <tr>
                                     <td><%= link_to recipient.name, conversation_messages_path(conversation)%></td>
                                     
